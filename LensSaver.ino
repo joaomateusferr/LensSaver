@@ -1,4 +1,4 @@
-//Created by Techno John
+  //Created by Techno John
 
 #include <DHT.h>
 
@@ -12,8 +12,8 @@
 
 LiquidCrystal_I2C lcd(0x3F, 16, 2);	//inicializa o display lcd i2c baseado no endereço obtido com o I2C_Scaner que pode ser encontrado na pasta res
 
-const int ledVerde = 13;	//led que indica um nivel alarmante de humidae definido na porta 13 do controlador
-const int ledVermelho = 12;		//led que indica um nivel alarmante de humidae definido na porta 12 do controlador
+const int ledVerde = 12;	//led que indica um nivel alarmante de humidae definido na porta 13 do controlador
+const int ledVermelho = 13;		//led que indica um nivel alarmante de humidae definido na porta 12 do controlador
  
 DHT dht(DHTPIN, DHTTYPE);	//istancia o sensor DTH
 
@@ -25,6 +25,8 @@ void setup(void)	//rotina chamada toda vez que o microcontrolador é ligado
   lcd.begin(16,2);	//define o tamanho display lcd
   lcd.init();	//liga o display lcd
   lcd.backlight();	//liga a luz de fundo do display lcd
+  pinMode(ledVerde, OUTPUT); //define os leds como output
+  pinMode(ledVermelho, OUTPUT);
 }  
 void loop(void)	//é executado em loop enqinto o controlador estiver ligado
 {
@@ -36,9 +38,7 @@ void loop(void)	//é executado em loop enqinto o controlador estiver ligado
   lcd.backlight();
   
   if (isnan(t) || isnan(h)) //valida se os sensores estão conectados
-  {
-    Serial.println("Error de leitura\n");
-    
+  { 
     lcd.clear(); 
     lcd.setCursor(0, 0);
     lcd.print("Error");
@@ -46,13 +46,8 @@ void loop(void)	//é executado em loop enqinto o controlador estiver ligado
     digitalWrite(ledVermelho, LOW);
     digitalWrite(ledVerde, LOW);
   } 
-  else	//printa os dados lidos dos sensor na serial e no display LCD
+  else	//printa os dados lidos dos sensor no display LCD
   {
-    Serial.print(h);
-    Serial.print(" ");
-    Serial.print(t);
-    Serial.print(" ");
-
     lcd.clear(); 
     lcd.setCursor(0, 0);
     lcd.print("H ");
