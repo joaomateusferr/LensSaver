@@ -12,8 +12,8 @@
 
 LiquidCrystal_I2C lcd(0x3F, 16, 2);	//inicializa o display lcd i2c baseado no endereço obtido com o I2C_Scaner que pode ser encontrado na pasta res
 
-const int ledVerde = 12;	//led que indica um nivel alarmante de humidae definido na porta 13 do controlador
-const int ledVermelho = 13;		//led que indica um nivel alarmante de humidae definido na porta 12 do controlador
+const int ledVerde = 5;	//led que indica um nivel alarmante de humidae definido na porta 5 do controlador
+const int ledVermelho = 8;		//led que indica um nivel alarmante de humidae definido na porta 8 do controlador
  
 DHT dht(DHTPIN, DHTTYPE);	//istancia o sensor DTH
 
